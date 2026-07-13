@@ -484,21 +484,27 @@
         /* ===== HERO SECTION ===== */
         .hero {
             padding: 140px 0 80px;
-            background: linear-gradient(165deg, #0f172a 0%, #1e293b 50%, #1a1a2e 100%);
             position: relative;
             overflow: hidden;
             min-height: 90vh;
             display: flex;
             align-items: center;
         }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: #0f172a url('images/full/gallery-1.jpg') center center / cover no-repeat;
+            filter: brightness(0.35) saturate(0.8);
+        }
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(230,57,70,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(244,162,97,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(29,53,87,0.3) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(230,57,70,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244,162,97,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(29,53,87,0.4) 0%, transparent 50%);
+            z-index: 1;
         }
         .hero-grid {
             display: grid;
@@ -506,7 +512,7 @@
             gap: 60px;
             align-items: center;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         .hero-badge {
             display: inline-flex;
@@ -1024,6 +1030,183 @@
         }
         .cta-feature i { color: var(--green); }
 
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            background: var(--white);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16 / 11;
+            background: var(--gray-100);
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-item-overlay {
+            background: rgba(0,0,0,0.35);
+        }
+        .gallery-item-overlay span {
+            color: var(--white);
+            font-size: 32px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-item-overlay span {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            animation: lightboxFadeIn 0.25s ease;
+        }
+        .lightbox.open {
+            display: flex;
+        }
+        @keyframes lightboxFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            object-fit: contain;
+            animation: lightboxImgIn 0.3s ease;
+        }
+        @keyframes lightboxImgIn {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-counter {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 12px;
+            letter-spacing: 1px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: var(--white);
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10001;
+        }
+        .lightbox-close:hover {
+            background: rgba(230,57,70,0.8);
+            transform: rotate(90deg);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10001;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .lightbox-prev { left: 8px; }
+            .lightbox-next { right: 8px; }
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+        }
+
         /* ===== TESTIMONIALS ===== */
         .testimonials-section {
             background: var(--gray-50);
@@ -1143,15 +1326,18 @@
             font-size: 12px;
         }
         .hours-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
         .hours-row {
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
-            padding: 4px 0;
+            align-items: center;
+            font-size: 15px;
+            padding: 8px 12px;
+            background: var(--gray-100);
+            border-radius: 8px;
         }
         .hours-row .day {
             font-weight: 600;
@@ -1162,9 +1348,7 @@
         }
         .hours-row.highlight {
             background: var(--orange-light);
-            border-radius: 6px;
-            padding: 4px 8px;
-            margin: 0 -8px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
         }
         .hours-row.highlight .day { color: var(--orange); }
         .hours-row.highlight .time { color: var(--orange); font-weight: 600; }
@@ -1383,6 +1567,7 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero">
+    <div class="hero-bg"></div>
     <div class="container">
         <div class="hero-grid">
             <div class="hero-content">
@@ -1665,6 +1850,54 @@
         </div>
     </div>
 </section>
+
+<!-- ===== GALLERY ===== -->
+<section class="section gallery-section" id="gallery">
+    <div class="container">
+        <div class="section-title-center">
+            <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-images"></i> Our Work</div>
+            <h2 class="section-title">See Our Team in Action</h2>
+            <p class="section-desc section-desc-center">Take a look at Columbus Heating & Cooling's facility, fleet, and technicians providing professional HVAC service in Columbus, OH.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item" data-index="0">
+                <img src="images/thumb/gallery-1-thumb.jpg" data-full="images/full/gallery-1.jpg" alt="Columbus Heating & Cooling office showroom with reception desk and HVAC equipment" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <span><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="1">
+                <img src="images/thumb/gallery-2-thumb.jpg" data-full="images/full/gallery-2.jpg" alt="Columbus Heating & Cooling facility exterior with branded service van" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <span><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="2">
+                <img src="images/thumb/gallery-3-thumb.jpg" data-full="images/full/gallery-3.jpg" alt="HVAC technicians performing AC maintenance at a Columbus residential home" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <span><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="3">
+                <img src="images/thumb/gallery-4-thumb.jpg" data-full="images/full/gallery-4.jpg" alt="Columbus Heating & Cooling technicians servicing an outdoor HVAC unit" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <span><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-content">
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+</div>
 
 <!-- ===== FAQ ===== -->
 <section class="section faq-section" id="faq">
@@ -1958,6 +2191,108 @@
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ===== LIGHTBOX GALLERY =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function openLightbox(index) {
+        const items = document.querySelectorAll('.gallery-item img');
+        if (index < 0 || index >= items.length) return;
+        currentIndex = index;
+        const img = items[index];
+        lightboxImg.src = img.dataset.full;
+        lightboxImg.alt = img.alt;
+        updateCounter();
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function prevImage() {
+        const items = document.querySelectorAll('.gallery-item img');
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        const img = items[currentIndex];
+        lightboxImg.src = img.dataset.full;
+        lightboxImg.alt = img.alt;
+        updateCounter();
+        // Re-trigger animation
+        lightboxImg.style.animation = 'none';
+        requestAnimationFrame(() => {
+            lightboxImg.style.animation = '';
+        });
+    }
+
+    function nextImage() {
+        const items = document.querySelectorAll('.gallery-item img');
+        currentIndex = (currentIndex + 1) % items.length;
+        const img = items[currentIndex];
+        lightboxImg.src = img.dataset.full;
+        lightboxImg.alt = img.alt;
+        updateCounter();
+        lightboxImg.style.animation = 'none';
+        requestAnimationFrame(() => {
+            lightboxImg.style.animation = '';
+        });
+    }
+
+    function updateCounter() {
+        const total = document.querySelectorAll('.gallery-item img').length;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + total;
+    }
+
+    // Click on gallery items
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            openLightbox(parseInt(item.dataset.index));
+        });
+    });
+
+    // Close button
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    // Click outside image to close
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Navigation buttons
+    lightboxPrev.addEventListener('click', prevImage);
+    lightboxNext.addEventListener('click', nextImage);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+    });
+
+    // Touch swipe support for mobile
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextImage();
+            else prevImage();
+        }
+    }, { passive: true });
 </script>
 </body>
 </html>
