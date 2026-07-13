@@ -187,6 +187,46 @@
                     "@type": "Answer",
                     "text": "We serve Columbus, Dublin, Westerville, Gahanna, Hilliard, Upper Arlington, Grove City, Reynoldsburg, Worthington, and all of Franklin, Delaware, and Licking counties."
                 }
+            },
+            {
+                "@type": "Question",
+                "name": "What are the signs my AC needs repair in Columbus?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Common signs include weak airflow, warm air blowing from vents, strange noises like banging or rattling, higher energy bills, unusual odors, and humidity issues. If you notice any of these, call Columbus Heating & Cooling for a professional inspection."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does an HVAC system installation take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A typical HVAC system installation in Columbus takes 1 to 2 days, depending on the complexity of the setup, ductwork modifications, and the type of system being installed. We provide a detailed timeline during your free estimate."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between a heat pump and a furnace?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A heat pump provides both heating and cooling by transferring heat, making it energy-efficient for moderate Ohio climates. A furnace generates heat by burning fuel or using electric resistance and is better suited for extreme cold. Our technicians can help you choose the right system for your Columbus home."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you offer thermostat installation and smart thermostat upgrades?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we install and upgrade all types of thermostats, including programmable and smart thermostats like Nest and Ecobee. A smart thermostat can reduce your energy bills by up to 15% and gives you remote control of your HVAC system via your smartphone."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How can I improve indoor air quality in my Columbus home?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can improve indoor air quality by changing air filters regularly, scheduling annual HVAC maintenance, installing air purifiers or UV germicidal lights, using humidifiers and dehumidifiers, and ensuring proper ventilation. Columbus Heating & Cooling offers a full range of IAQ solutions."
+                }
             }
         ]
     }
@@ -287,6 +327,7 @@
             font-weight: 800;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            white-space: nowrap;
             animation: pulse-call 2s infinite;
         }
         .sticky-phone a i { font-size: 26px; }
@@ -387,6 +428,7 @@
             color: var(--primary);
             font-weight: 700;
             font-size: 17px;
+            white-space: nowrap;
         }
         .nav-phone i { font-size: 18px; }
         .nav-cta {
@@ -542,6 +584,7 @@
             box-shadow: 0 8px 32px rgba(230,57,70,0.35);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
         .btn-call-hero:hover {
             transform: translateY(-3px);
@@ -811,24 +854,27 @@
             right: 30px;
             background: var(--primary);
             border-radius: 50%;
-            width: 90px;
-            height: 90px;
+            width: 110px;
+            height: 110px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             box-shadow: 0 8px 30px rgba(230,57,70,0.3);
+            text-align: center;
+            padding: 8px;
         }
         .about-image .years-badge .num {
-            font-size: 30px;
+            font-size: 32px;
         }
         .about-image .years-badge .label {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             opacity: 0.9;
+            max-width: 90px;
         }
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1131,6 +1177,7 @@
             color: var(--primary);
             margin-top: 8px;
             transition: var(--transition);
+            white-space: nowrap;
         }
         .contact-phone-large:hover { color: var(--primary-dark); }
 
@@ -1145,7 +1192,7 @@
 
         /* ===== GOOGLE MAPS ===== */
         .map-section {
-            padding: 0;
+            padding: 40px 0 0;
         }
         .map-container {
             width: 100%;
@@ -1501,7 +1548,7 @@
         <h2>Need HVAC Service in Columbus, OH?<br>We're Ready to Help.</h2>
         <p>Call us now for fast, professional service. Same-day appointments available.</p>
         <a href="tel:+13802688853" class="btn-call-hero">
-            <i class="fa-solid fa-phone"></i> Call (380) 268-8853
+            <i class="fa-solid fa-phone"></i> (380) 268-8853
         </a>
         <div class="cta-features">
             <span class="cta-feature"><i class="fa-solid fa-check-circle"></i> Same-Day Service</span>
@@ -1671,6 +1718,51 @@
                 </button>
                 <div class="faq-answer">
                     Most HVAC systems should be inspected at least once a year, though many homes benefit from seasonal inspections — once in spring for the AC and once in fall for the heating system. Regular maintenance helps catch small issues early, keeps your system running efficiently, and extends its lifespan.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are the signs my AC needs repair in Columbus?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Common signs include weak airflow, warm air blowing from vents, strange noises like banging or rattling, higher energy bills, unusual odors, and humidity issues. If you notice any of these, call Columbus Heating & Cooling for a professional inspection. Early diagnosis can prevent costly breakdowns and extend the life of your system.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How long does an HVAC system installation take?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    A typical HVAC system installation in Columbus takes 1 to 2 days, depending on the complexity of the setup, ductwork modifications, and the type of system being installed. We provide a detailed timeline during your free estimate. Our team works efficiently to minimize disruption to your daily routine.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is the difference between a heat pump and a furnace?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    A heat pump provides both heating and cooling by transferring heat, making it energy-efficient for moderate Ohio climates. A furnace generates heat by burning fuel or using electric resistance and is better suited for extreme cold. Many Columbus homeowners choose a dual-fuel system that combines both for year-round efficiency. Our technicians can help you choose the right system for your home.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you offer thermostat installation and smart thermostat upgrades?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Yes, we install and upgrade all types of thermostats, including programmable and smart thermostats like Nest and Ecobee. A smart thermostat can reduce your energy bills by up to 15% and gives you remote control of your HVAC system via your smartphone. We'll help you select and install the best thermostat for your Columbus home.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How can I improve indoor air quality in my Columbus home?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    You can improve indoor air quality by changing air filters regularly, scheduling annual HVAC maintenance, installing air purifiers or UV germicidal lights, using humidifiers and dehumidifiers, and ensuring proper ventilation. Columbus Heating & Cooling offers a full range of IAQ solutions tailored to your home's needs. Breathe cleaner, healthier air all year round.
                 </div>
             </div>
         </div>
